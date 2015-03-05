@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info">
+  <Properties>
+  	<Property name="logDir">d:\dev\tmp</Property>
+    <Property name="mainFileName">${logDir}\main.log</Property>
+    <Property name="errorFileName">${logDir}\error.log</Property>
+    <Property name="businessFileName">${logDir}\business.log</Property>
+    <Property name="runtimeFileName">${logDir}\runtime.log</Property>
+  	<Property name="logPattern">%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
+  </Properties>
+  
+  <Appenders>
+    <File name="Main" fileName="${mainFileName}" bufferedIO="true" immediateFlush="false">
+      <PatternLayout pattern="${logPattern}" />
+    </File>
+    <File name="Error" fileName="${errorFileName}" bufferedIO="true" immediateFlush="false">
+      <PatternLayout pattern="${logPattern}" />
+    </File>
+    <File name="Business" fileName="${businessFileName}" bufferedIO="true" immediateFlush="false">
+      <PatternLayout pattern="${logPattern}" />
+    </File>
+    <File name="Runtime" fileName="${runtimeFileName}" bufferedIO="true" immediateFlush="false">
+      <PatternLayout pattern="${logPattern}" />
+    </File>
+    <Console name="STDOUT">
+      <PatternLayout pattern="${logPattern}" />
+    </Console>
+  </Appenders>
+  
+  <Loggers>
+    <Root level="info">
+      <AppenderRef ref="STDOUT" />
+    </Root>
+    <Logger name="main" level="info" additivity="true">
+      <AppenderRef ref="Main" />
+    </Logger>
+    <Logger name="business" level="warn" additivity="true">
+      <AppenderRef ref="Business" />
+    </Logger>
+    <Logger name="error" level="error" additivity="true">
+      <AppenderRef ref="Error" />
+    </Logger>
+    <Logger name="runtime" level="error" additivity="true">
+      <AppenderRef ref="Runtime" />
+    </Logger>
+  </Loggers>
+</Configuration>
